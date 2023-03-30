@@ -1,0 +1,3 @@
+export TOKEN=xxx
+export HOST=https://xxx.atlassian.net
+export MAIL=example@example.com

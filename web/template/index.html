@@ -1,0 +1,8 @@
+{{template "partials/header" .}}
+<a href=""><small>{{.Project}}</small></a>
+<h2>{{.Title}}</h2>
+<h3>Description</h3>
+{{range .Description}}
+    <p>{{.}}</p>
+{{end}}
+{{template "partials/footer" .}}

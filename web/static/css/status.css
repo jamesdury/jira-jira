@@ -1,0 +1,31 @@
+a .status {
+  text-decoration: none;
+}
+
+.status {
+  color: black;
+  font-size: 0.8rem;
+  text-align: right;
+  text-decoration: none;
+  padding: 0.2rem;
+}
+
+.status.blue-gray {
+  background: #9ADCFF;
+}
+
+.status.yellow {
+   background: #FFF89A;
+}
+
+.status.green {
+  background: #F9F9F9;
+}
+
+.status.neutral {
+  background: #ebebeb;
+}
+
+.status.inline {
+    margin-right: 0.5rem;
+}

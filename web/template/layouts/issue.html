@@ -1,0 +1,153 @@
+{{template "partials/header" .}}
+<article>
+    <!--`
+    <a href="/issues?jql=project%3D%22{{ .Issue.Project.Key }}%22+and+assignee+%3D+currentUser%28%29"><small>{{.Project}}</small></a> - <small>{{ .Key }}</small>
+    -->
+<h2>{{ .Issue.Summary }}</h2>
+<div class="breadcrumbs">
+    <a href="/">Dash</a> / <a href="/issues?jql=project%3D%22{{ .Issue.Project.Key }}%22+and+assignee+%3D+currentUser%28%29">{{.Issue.Project.Name }}</a> / {{ if .Issue.Parent }} <a href="/issues/{{.Issue.Parent.Key }}">{{ .Issue.Parent.Key}}</a> / {{ end }}<span>{{ .Key }}</span>
+</div>
+<details>
+    <summary>Issue</summary>
+    <div class="container">
+<aside>
+    <article>
+        <span>Type:</span>
+        <span><img src="{{ .Issue.IssueType.IconURL }}" /> {{ .Issue.IssueType.Name }}</span>
+    </article>
+    <article>
+        <span>Status:</span>
+        <span class="status {{ .Issue.Status.StatusCategory.ColorName }}">{{ .Issue.Status.Name }}</span>
+    </article>
+    <article>
+        <span>Last Updated:</span>
+        <span>{{ .Issue.Updated | date }}</span>
+    </article>
+    <article>
+        <span>Date Created:</span>
+        <span>{{ .Issue.Created | date }}</span>
+    </article>
+    <article>
+        <span>Labels:</span>
+        <span>{{ range .Issue.Labels }}&nbsp;#{{ . }}{{ end }}</span>
+    </article>
+
+</aside>
+
+<aside>
+    <article>
+        <span>Assignee</span>
+        <span>{{ .Issue.Creator.DisplayName }}</span>
+    </article>
+    <article>
+        <span>Reporter</span>
+        <span>{{ .Issue.Reporter.DisplayName }}</span>
+    </article>
+    <article>
+        <span>Jira:</span>
+        <span><a href="https://xxx.atlassian.net/browse/{{ .Key }}">{{ .Key }}</a></span>
+    </article>
+    <article>
+        <span>Project:</span>
+        <span><a href="/issues?jql=project%3D%22{{ .Issue.Project.Key }}%22+and+assignee+%3D+currentUser%28%29">{{.Issue.Project.Name}}</a></span>
+    </article>
+    <article>
+        <span>Clear Cache:</span>
+        <span><a href="?refresh=true">Refresh</a></span>
+    </article>
+</aside>
+    </div>
+</details>
+
+{{ if .Issue.Description }}
+<div class="content">
+    <h3>Description</h3>
+    {{template "partials/issue-content" .Issue.Description.Content }}
+</div>
+{{ end }}
+
+{{ template "partials/issue-links" . }}
+
+{{ if .Issue.Attachment }}
+<section>
+    <h3>Attachments</h3>
+    <div class="attachments">
+    {{ range .Issue.Attachment }}
+        <div class="attachment">
+        {{ if eq (.MimeType) ("video/quicktime") }}
+        <a href="/image?url={{ .Content }}&mimetype=application/octet-stream"><span>{{ .Filename }}</span></a>
+        {{ else }}
+        <a href="/image?url={{ .Content }}&mimetype={{ .MimeType }}" style="background-image: url(/image?url={{ .Thumbnail }}&mimetype={{ .MimeType }})"><span>{{ .Filename }}</span></a>
+        {{ end }}
+        </div>
+    {{ end }}
+    </div>
+</section>
+{{ end }}
+
+{{ if eq (len .Issue.Comment.Comments) 0 }}
+
+{{ else }}
+<section>
+<details open>
+    <summary>Comments</summary>
+    <div class="container container-column">
+
+    {{ range .Issue.Comment.Comments }}
+        <div class="comment">
+            <div class="author">
+            <img src="{{ .Author.AvatarUrls.Four8X48 }}" />
+            <h4>{{ .Author.DisplayName }}</h4>
+            <a href="#{{ .ID }}" id="{{ .ID }}">
+                <small>{{ .Created | date }}</small>
+            </a>
+            </div>
+            {{template "partials/issue-content" .Body.Content }}
+        </div>
+
+    {{ end }}
+    </div>
+</details>
+</section>
+{{ end }}
+
+</article>
+
+
+
+
+<script>
+    if (window.location.search === "?refresh=true" ) { window.location.search = ""}
+
+
+document.querySelectorAll('li').forEach(el => el.style.cursor = 'pointer')
+
+document.addEventListener('click', (event) => {
+    if (event.target.localName === 'li') {
+        event.target.style.cursor = 'pointer';
+
+        if (event.target.style.textDecoration) {
+            event.target.style.textDecoration = '';
+        }else{
+            event.target.style.textDecoration = 'line-through';
+        }
+    }
+})
+
+/**
+ * replace xxx absolute urls
+ */
+document.querySelectorAll('a').forEach( (value) => {
+    if (
+        value.href.indexOf('atlassian.net') > -1 &&
+        value.innerHTML === value.href
+    ){
+        const ticket = value.href.split('/').pop()
+        value.href = [ window.location.origin, 'issues', ticket].join('/')
+        value.innerHTML = [ window.location.origin, 'issues', ticket].join('/')
+    }
+})
+
+</script>
+
+{{template "partials/footer" .}}

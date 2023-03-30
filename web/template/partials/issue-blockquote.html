@@ -1,0 +1,14 @@
+<blockquote>
+{{ range .Content }}
+    {{ range .Content }}
+        {{ if eq (.Type) ("text") }}
+            {{ .Text }}
+        {{ end }}
+        {{ if eq (.Type) ("inlineCard") }}
+            {{ range .Attrs }}
+            <a href="{{ . }}">{{ . }}</a>
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+</blockquote>

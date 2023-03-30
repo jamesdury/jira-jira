@@ -1,0 +1,46 @@
+.attachments {
+    display: flex;
+    overflow-x: scroll;
+    margin: 1rem 0;
+
+}
+.attachment {
+    align-items: center;
+    border: 0.2rem solid #efefef;
+    margin-left: 0.5rem;
+    background: #ccc;
+    display: flex;
+    height: 125px;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 125px;
+}
+.attachment:first-child {
+    margin-left: 0;
+}
+
+.attachment a:hover span  {
+    display: block;
+
+}
+
+.attachment a {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display:flex;
+    flex: 1;
+    height: 100%;
+    text-decoration: none;
+}
+
+.attachment a span {
+    display: none;
+    background: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    padding: 0.4rem;
+    text-decoration: none;
+    word-break: break-all;
+    z-index:1;
+}

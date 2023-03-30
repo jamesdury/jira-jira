@@ -1,0 +1,53 @@
+{{ range . }}
+
+    {{ if eq (.Type) ("rule") }}
+        <hr />
+    {{ end }}
+
+    {{ if eq (.Type) ("panel") }}
+        <div class="panel">
+            <div class="description">
+            {{ range .Content }}
+                {{template "partials/issue-body" . }}
+            {{ end }}
+            </div>
+        </div>
+    {{ end }}
+
+    {{ if eq (.Type) ("mediaSingle") }}
+        {{ range .Content }}
+
+            {{ range .Attrs }}
+            <!-- https://developer.atlassian.com/cloud/jira/platform/apis/document/nodes/media/ -->
+
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{ if eq (.Type) ("heading") }}
+        {{ range .Content }}
+            <h3>{{ .Text }}</h3>
+        {{ end }}
+    {{ end }}
+
+    {{ if eq (.Type) ("paragraph") }}
+        {{template "partials/issue-paragraph" . }}
+    {{ end }}
+
+    {{ if eq (.Type) ("codeBlock") }}
+        {{template "partials/issue-codeblock" . }}
+    {{ end }}
+
+    {{ if eq (.Type) ("blockquote") }}
+        {{template "partials/issue-blockquote" . }}
+    {{ end }}
+
+    {{ if eq (.Type) ("orderedList") }}
+        <ol>{{template "partials/issue-bullet-list" . }}</ol>
+    {{ end }}
+
+    {{ if eq (.Type) ("bulletList") }}
+        <ul>{{template "partials/issue-bullet-list" . }}</ul>
+    {{ end }}
+
+{{ end }}

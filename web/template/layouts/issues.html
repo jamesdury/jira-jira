@@ -1,0 +1,50 @@
+{{template "partials/header" .}}
+<!--
+<article>
+    <a href=""><small>{{.Project}}</small></a>
+    <h2>Issues</h2>
+<div class="breadcrumbs">
+    <a href="/">Dash</a> / <span>Issues</span>
+</div>
+    <form class="search">
+        <input type="text" name="jql" value="{{ .Jql }}" />
+        <button>Submit</button>
+    </form>
+
+<details>
+    <summary>Favourites</summary>
+<aside>
+    <ul>
+        <li><a href="/issues?jql=project+%3D+%22IPD%22+AND+assignee+%3D+%2261b353089615eb006fbcc12e%22+AND+status+IN+(%22Awaiting+Code+Review%22%2C%22Blocked%22%2C%22Definition+Required%22%2C%22Developer+Review%22%2C%22Design+Review%22)+ORDER+BY+created+DESC">My Tickets</a></li>
+        <li><a href="/issues?jql=assignee+%3D+currentUser%28%29+AND+project+%3D+%22IPD%22+and+Sprint+%3D+2384+and+status+%21%3D+DONE+ORDER+BY+created+DESC">Current Sprint</a></li>
+    </ul>
+</aside>
+</details>
+
+-->
+<style>
+article {
+    background: white;
+    border-bottom: 1px solid #c0cdd9;
+    padding: 1.5rem;
+
+}
+
+</style>
+    {{ range .Issues }}
+<article>
+<h4>{{ .Fields.Summary }}</h4>
+            <a href="/issues/{{.Key }}">{{ .Key }} - {{ .Fields.Summary }}</a>
+            <a href="/issues?jql=project+%3D+%22{{ .Fields.Project.Key }}%22+AND+assignee+%3D+currentUser%28%29+AND+status+%3D+%22{{ .Fields.Status.Name }}%22+ORDER+BY+created+DESC">
+                <span title="{{ .Fields.Status.Description }}" class="status {{ .Fields.Status.StatusCategory.ColorName }}">{{.Fields.Status.Name }}</span>
+            </a>
+    </article>
+    {{ end }}
+
+</article>
+<script>
+    if (window.location.search === "" ) { window.location.search = "?jql=assignee+%3D+currentUser%28%29"}
+</script>
+
+
+{{ template "partials/footer" . }}

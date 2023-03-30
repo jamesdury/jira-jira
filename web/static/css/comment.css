@@ -1,0 +1,20 @@
+.comment {
+    border-bottom: 1px solid #efefef;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.comment .author {
+    align-items: center;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.comment .author h4 {
+    margin: 0 .5rem;
+}
+
+.comment .author img {
+    max-height: 18px;
+    border-radius: 1rem;
+}

@@ -1,0 +1,25 @@
+nav {
+  align-items: center;
+  background-color: var(--color-foreground-main);
+  display: flex;
+  padding: .5rem 0;
+  padding-left: 1rem;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+nav a {
+  color: var(--color-primary);
+  font-size: .8rem;
+  margin-left: 0.4rem;
+  padding: 0.5rem 0.4rem;
+  text-decoration: underline;
+}
+
+nav a:hover {
+  text-decoration: #000 wavy underline;
+}
+
+nav a:first-child {
+  margin-left: 0;
+}

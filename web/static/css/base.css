@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    height: 100%;
+}
+
+body {
+    background-color: var(--color-background-main);
+    color: var(--color-primary-main);
+    font-family: var(--system-ui);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+p {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+h1,h2,h3,h4,h5,h6 { font-family:  var(--system-ui); font-weight: normal; }
+
+h1 { font-size: 3rem; }
+
+h2 { font-size: 2rem; letter-spacing: -.05rem; }
+
+ul { margin-left: 0.1rem; }
+
+li { padding: 0.2rem 0; }
+
+p { line-height: 1.5rem; }
+
+a { color: var(--color-primary); }
+
+a:hover { text-decoration: wavy underline; }
+a:focus { text-decoration: wavy underline; }
+
+a:visited { color: var(--color-link-visited); }
+
+img { height: auto; max-width: 100%; }

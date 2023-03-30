@@ -1,0 +1,27 @@
+section,
+table {
+  width: 100%;
+}
+table {
+  border-collapse: seperate;
+
+  border-spacing: 0 1rem;
+}
+
+td,
+th {
+  margin: 0;
+}
+
+td:last-child span {
+  max-width: 100%;
+  font-size: 0.8rem;
+}
+
+th {
+  background-color: #8c909c;
+  color: white;
+  font-weight: normal;
+  padding: 0.5rem;
+  text-align: left;
+}

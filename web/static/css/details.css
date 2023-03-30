@@ -1,0 +1,32 @@
+details .container {
+    display: flex;
+}
+
+details .container-column {
+    flex-direction:column;
+}
+
+details .container aside {
+    flex: 1;
+}
+
+details .container aside:first-child {
+    padding-right: .5rem;
+}
+
+details .container aside:last-child {
+    padding-left: .5rem;
+     border-left: 1px solid #efefef;
+}
+
+details summary {
+    cursor: pointer;
+    font-family:  serif;
+    font-weight: normal;
+}
+
+details[open] {
+    border-radius: 0.4rem;
+    box-shadow: 0 0 0 1px #656a7626,0px 2px 3px 0px #656a761a,0px 8px 16px -10px #656a7633;
+    padding: 16px;
+}

@@ -1,0 +1,17 @@
+code {
+  background: var(--color-background-code);
+  border-radius: 0.4rem;
+  color: var(--color-foreground-code);
+  display: block;
+  font-size: 0.8rem;
+  font-family: monospace;
+  overflow: scroll;
+  max-width: 90vw;
+  padding-left: 0.4rem;
+}
+
+code.inline {
+  display: inline-block;
+  line-height: initial;
+  padding-left: 0;
+}

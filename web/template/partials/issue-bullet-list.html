@@ -1,0 +1,16 @@
+{{ range .Content }}
+    <li>
+        {{ range .Content  }}
+
+
+            {{ $type := .Type }}
+
+            {{ if eq ($type) ("bulletList") }}
+                <ul>{{ template "partials/issue-bullet-list" . }}</ul>
+            {{ end }}
+
+            {{template "partials/issue-body" . }}
+
+        {{ end }}
+    </li>
+{{ end }}

@@ -1,0 +1,6 @@
+.breadcrumbs {
+    margin: 1rem 0;
+}
+.breadcrumbs a {
+  color: var(--color-primary) !important;
+}

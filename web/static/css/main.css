@@ -1,0 +1,78 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+}
+
+main {
+  flex: 1;
+  height: 100%;
+  padding: 1rem;
+}
+
+main article {
+  flex: 1;
+  max-width: 1000px;
+}
+
+main aside {
+  flex: 0.4;
+}
+
+blockquote {
+  border-left: 0.4rem solid var(--color-background-emphasis);
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+article h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+aside {
+/*  border-left: 1px solid #efefef;
+  padding: 1rem;
+*/
+  font-size: 0.8rem;
+}
+
+aside article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+aside article span{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.2rem 0;
+}
+
+.panel {
+  background: var(--color-background-emphasis);
+  border: 1px solid lightblue;
+  color: var(--color-foreground-emphasis);
+  margin-bottom: 0.5rem;
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.panel .topic {
+    border-right: 1px solid lightblue;
+    color: blue;
+    text-transform: uppercase;
+    padding: 1rem;
+}
+.panel .description {
+    padding: 1rem;
+}
+
+.issue-link {
+    border-bottom: 1px solid #efefef;
+    padding: 1rem;
+    padding-left: 0rem;
+}

@@ -1,0 +1,31 @@
+
+{{template "partials/header" .}}
+
+<article>
+    <h3>Myself</h3>
+
+    <article>
+        <span>Email:</span>
+        <span>
+            <img src="{{ .Myself.AvatarUrls.Four8X48 }}" style="width: 1rem; margin-right: .5rem" title="{{ .Myself.DisplayName }}" />
+            {{ .Myself.EmailAddress }}</span>
+    </article>
+    <article>
+        <span>Display Name:</span>
+        <span>{{ .Myself.DisplayName }}</span>
+    </article>
+    <article>
+        <span>Time Zone:</span>
+        <span>{{ "2022-09-23T14:41:27.252+0100" | date }}</span>
+        <!-- <span>{{ .Myself.TimeZone }}</span> -->
+    </article>
+    <article>
+        <span>Locale:</span>
+        <span>{{ .Myself.Locale }}</span>
+    </article>
+
+</article>
+
+
+
+{{template "partials/footer" .}}

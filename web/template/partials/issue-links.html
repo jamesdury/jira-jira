@@ -1,0 +1,25 @@
+{{ if .IssueLinks.Fields.IssueLinks }}
+    <h3>Linked Issues</h3>
+    {{ range .IssueLinks.Fields.IssueLinks }}
+        {{ if .InwardIssue }}
+            <div class="panel">
+                <div class="topic">
+                    <span title="{{ .Type.Inward }}">&#8702;</span>
+                </div>
+                <div class="description">
+                    <a href="/issues/{{ .InwardIssue.Key }}">{{.InwardIssue.Key }} {{ .InwardIssue.Fields.Summary}}</a>
+                </div>
+            </div>
+        {{ end }}
+        {{ if .OutwardIssue }}
+            <div class="panel">
+                <div class="topic">
+                    <span title="{{ .Type.Inward }}">&#8701;</span>
+                </div>
+                <div class="description">
+                    <a href="/issues/{{ .OutwardIssue.Key }}">{{ .OutwardIssue.Key}} {{ .OutwardIssue.Fields.Summary}}</a>
+                </div>
+            </div>
+        {{ end }}
+    {{ end }}
+{{ end }}

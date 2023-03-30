@@ -1,0 +1,90 @@
+{{ range .Content  }}
+
+    {{ $type := .Type }}
+    {{ $text := .Text }}
+
+    {{ range .Marks }}
+
+        {{ if eq (.Type) ("link") }}<a href="{{ $text }}">{{ end }}
+        {{ if eq (.Type) ("code") }}<code class="inline">{{ end }}
+        {{ if eq (.Type) ("em") }}<em>{{ end }}
+        {{ if eq (.Type) ("strong") }}<strong>{{ end }}
+
+    {{ end }}
+
+    {{ if eq (.Type) ("date") }}
+        {{ range $index, $value := .Attrs }}
+            {{ if eq ($index) ("timestamp") }}
+                {{ . }}
+            {{ end }}
+        {{ end }}
+        </span>
+    {{ end }}
+
+    {{ if eq (.Type) ("emoji") }}
+        {{ range $index, $value := .Attrs }}
+            {{ if eq ($index) ("text") }}
+                {{ . }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{ if eq (.Type) ("status") }}
+        {{ range $index, $value := .Attrs }}
+            {{ if eq ($index) ("color") }}
+            <span class="status {{ . }} inline">
+            {{ end }}
+            {{ if eq ($index) ("text") }}
+                {{ . }}
+            {{ end }}
+        {{ end }}
+            </span>
+    {{ end }}
+
+    {{ if eq (.Type) ("inlineCard") }}
+        {{ range .Attrs }}
+            <a href="{{ . }}">{{ . }}</a>
+        {{ end }}
+    {{ end }}
+
+    {{ if eq (.Type) ("emoji") }}
+        {{ range $index, $value := .Attrs }}
+            {{ if eq ($index) ("text") }}
+                {{ . }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{ if eq (.Type) ("mention") }}
+        {{ range $index, $value := .Attrs }}
+            {{ if eq ($index) ("text") }}
+                <strong>{{ . }}</strong>
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{ if eq (.Type) ("hardBreak") }}
+        <br />
+    {{ end }}
+
+    {{ if eq (.Type) ("text") }}
+        {{ if ne ($type) ("codeBlock") }}
+            {{ .Text }}
+        {{ else }}
+            {{ .Text }}
+        {{ end }}
+    {{ end }}
+
+    {{ if eq ($type) ("codeBlock") }}
+        <code>{{ .Text }}</code>
+    {{ end }}
+
+
+    {{ range .Marks }}
+        {{ if eq (.Type) ("link") }}</a>{{ end }}
+        {{ if eq (.Type) ("code") }}</code>{{ end }}
+        {{ if eq (.Type) ("em") }}</em>{{ end }}
+        {{ if eq (.Type) ("strong") }}</strong>{{ end }}
+    {{ end }}
+
+{{ end }}
